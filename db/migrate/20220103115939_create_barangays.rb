@@ -3,7 +3,7 @@ class CreateBarangays < ActiveRecord::Migration[6.0]
     create_table :barangays do |t|
       t.string :name
       t.integer :population
-      t.integer :status
+      t.integer :status, default: 0
 
       t.timestamps
     end

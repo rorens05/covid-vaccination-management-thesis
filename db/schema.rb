@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_03_115939) do
+ActiveRecord::Schema.define(version: 2022_01_03_132646) do
 
   create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -71,6 +71,9 @@ ActiveRecord::Schema.define(version: 2022_01_03_115939) do
     t.string "name"
     t.integer "role", default: 0
     t.integer "status", default: 0
+    t.date "birthday"
+    t.string "contact_number"
+    t.integer "gender"
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
@@ -85,7 +88,7 @@ ActiveRecord::Schema.define(version: 2022_01_03_115939) do
   create_table "barangays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.integer "population"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -113,6 +116,27 @@ ActiveRecord::Schema.define(version: 2022_01_03_115939) do
     t.boolean "maintenance_mode"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "patients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "barangay_id", null: false
+    t.string "first_name"
+    t.string "middle_name"
+    t.string "last_name"
+    t.string "email"
+    t.date "birthday"
+    t.string "contact_number"
+    t.integer "gender", default: 0
+    t.integer "status", default: 0
+    t.string "place_of_birth_city"
+    t.string "place_of_birth_country"
+    t.string "nationality"
+    t.integer "civil_status", default: 0
+    t.string "religion"
+    t.string "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["barangay_id"], name: "index_patients_on_barangay_id"
   end
 
   create_table "provinces", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -192,11 +216,30 @@ ActiveRecord::Schema.define(version: 2022_01_03_115939) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "vaccine_stocks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "vaccine_id", null: false
+    t.integer "quantity", null: false
+    t.datetime "date_added", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["vaccine_id"], name: "index_vaccine_stocks_on_vaccine_id"
+  end
+
+  create_table "vaccines", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.integer "number_of_doses"
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "accounts", "banks"
   add_foreign_key "accounts", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cities", "provinces"
+  add_foreign_key "patients", "barangays"
   add_foreign_key "provinces", "regions"
   add_foreign_key "transactions", "accounts"
   add_foreign_key "transactions", "categories"
+  add_foreign_key "vaccine_stocks", "vaccines"
 end
