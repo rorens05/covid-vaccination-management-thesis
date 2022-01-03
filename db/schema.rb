@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_03_132646) do
+ActiveRecord::Schema.define(version: 2022_01_03_142339) do
 
   create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -216,6 +216,16 @@ ActiveRecord::Schema.define(version: 2022_01_03_132646) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "vaccinations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "patient_id", null: false
+    t.bigint "vaccine_id", null: false
+    t.date "date_of_vacination"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["patient_id"], name: "index_vaccinations_on_patient_id"
+    t.index ["vaccine_id"], name: "index_vaccinations_on_vaccine_id"
+  end
+
   create_table "vaccine_stocks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "vaccine_id", null: false
     t.integer "quantity", null: false
@@ -241,5 +251,7 @@ ActiveRecord::Schema.define(version: 2022_01_03_132646) do
   add_foreign_key "provinces", "regions"
   add_foreign_key "transactions", "accounts"
   add_foreign_key "transactions", "categories"
+  add_foreign_key "vaccinations", "patients"
+  add_foreign_key "vaccinations", "vaccines"
   add_foreign_key "vaccine_stocks", "vaccines"
 end

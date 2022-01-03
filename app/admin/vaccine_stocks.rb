@@ -4,11 +4,21 @@ ActiveAdmin.register VaccineStock do
 
   permit_params :vaccine_id, :quantity, :date_added
  
+  index do
+    selectable_column
+    column :vaccine
+    column :quantity
+    column :date_added
+    actions
+  end
+
   form do |f|
+    f.semantic_errors *f.object.errors.keys
     f.object.date_added = Date.today if f.object.new_record?
     f.inputs do
       f.input :vaccine_id, as: :select, collection: Vaccine.all.map{|v| [v.name, v.id]}, include_blank: false
       f.input :quantity
+      f.input :date_added, as: :hidden
     end
     f.actions
   end

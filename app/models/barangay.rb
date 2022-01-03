@@ -3,4 +3,5 @@ class Barangay < ApplicationRecord
   validates :population, presence: true
   validates :status, presence: true
   enum status: [:active, :inactive]
+  has_many :patients, dependent: :destroy
 end

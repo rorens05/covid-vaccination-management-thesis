@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
+# name management
+gem 'name_of_person'
 # for creating beautiful charts
 gem "chartkick"
 # datetime picker for active admin

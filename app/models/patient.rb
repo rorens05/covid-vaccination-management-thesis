@@ -1,5 +1,7 @@
 class Patient < ApplicationRecord
   belongs_to :barangay
+  has_many :vaccinations, dependent: :destroy
+  has_person_name
 
   validates :barangay, presence: true
   validates :first_name, presence: true
@@ -20,8 +22,5 @@ class Patient < ApplicationRecord
   enum gender: [:male, :female, :undisclosed]
   enum civil_status: [:single, :married]
 
-  def age_in_years
-    
-  end
 
 end

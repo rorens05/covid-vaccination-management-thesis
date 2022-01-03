@@ -8,9 +8,9 @@ ActiveAdmin.register AdminUser do
     column :email
     column :name
     column :role
-    column :status
-    column :current_sign_in_at
-    column :sign_in_count
+    column :status do |admin_user|
+      status_tag admin_user.status
+    end
     column :created_at
     actions
   end

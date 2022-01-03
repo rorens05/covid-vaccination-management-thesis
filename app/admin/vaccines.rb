@@ -28,6 +28,9 @@ ActiveAdmin.register Vaccine do
           row :stocks do |vaccine|
             "#{vaccine.stocks} stocks"
           end
+          row :remaining_stocks do |vaccine|
+            "#{vaccine.remaining_stocks} stocks"
+          end
           row :status do |vaccine|
             status_tag vaccine.status
           end
@@ -58,6 +61,14 @@ ActiveAdmin.register Vaccine do
           end
         end
       end
+      tab "Vaccination History" do
+        table_for resource.vaccinations do
+          column :id
+          column :patient
+          column :date_of_vacination
+        end
+      end
+
     end 
   end 
   
