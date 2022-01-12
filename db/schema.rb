@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_03_142339) do
+ActiveRecord::Schema.define(version: 2022_01_12_105017) do
 
   create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -78,6 +78,13 @@ ActiveRecord::Schema.define(version: 2022_01_03_142339) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "announcements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "banks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -136,6 +143,8 @@ ActiveRecord::Schema.define(version: 2022_01_03_142339) do
     t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "philhealth_number"
+    t.string "category"
     t.index ["barangay_id"], name: "index_patients_on_barangay_id"
   end
 
@@ -222,6 +231,8 @@ ActiveRecord::Schema.define(version: 2022_01_03_142339) do
     t.date "date_of_vacination"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "vaccinator"
+    t.string "lot_no"
     t.index ["patient_id"], name: "index_vaccinations_on_patient_id"
     t.index ["vaccine_id"], name: "index_vaccinations_on_vaccine_id"
   end

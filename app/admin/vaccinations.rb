@@ -2,7 +2,7 @@ ActiveAdmin.register Vaccination do
 
   menu priority: 3
 
-  permit_params :patient_id, :vaccine_id, :date_of_vacination
+  permit_params :patient_id, :vaccine_id, :date_of_vacination, :vaccinator, :lot_no
 
   filter :patient
   filter :vaccine
@@ -20,6 +20,8 @@ ActiveAdmin.register Vaccination do
     f.inputs do
       f.input :patient
       f.input :vaccine
+      f.input :vaccinator
+      f.input :lot_no
       f.input :date_of_vacination, as: :date_picker
     end
     f.actions

@@ -1,0 +1,11 @@
+.announcement-container{
+  display: none
+}
+
+html{
+  padding: 32px !important;
+}
+
+#page_title{
+  display: none
+}

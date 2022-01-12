@@ -5,4 +5,8 @@ class HomeController < ApplicationController
     redirect_to admin_dashboard_path
   end
 
+  def vaccination_card
+    @patient = Patient.find(params[:id])
+  end
+
 end

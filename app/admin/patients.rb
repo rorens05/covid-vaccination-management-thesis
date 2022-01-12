@@ -2,7 +2,7 @@ ActiveAdmin.register Patient do
 
   menu label: "Patients", priority: 2
 
-  permit_params :barangay_id, :first_name, :middle_name, :last_name, :email, :birthday, :contact_number, :gender, :status, :place_of_birth_city, :place_of_birth_country, :nationality, :civil_status, :religion, :address
+  permit_params :barangay_id, :first_name, :middle_name, :last_name, :email, :birthday, :contact_number, :gender, :status, :place_of_birth_city, :place_of_birth_country, :nationality, :civil_status, :religion, :address, :philhealth_number, :category
   
   filter :first_name
   filter :last_name
@@ -16,6 +16,7 @@ ActiveAdmin.register Patient do
     column :name
     column :birthday
     column :gender
+    column :category
     column :status do |item|
       status_tag item.status
     end
@@ -39,6 +40,8 @@ ActiveAdmin.register Patient do
     f.input :civil_status
     f.input :religion
     f.input :address
+    f.input :philhealth_number
+    f.input :category
     f.actions
   end
 
@@ -52,6 +55,8 @@ ActiveAdmin.register Patient do
           row :middle_name
           row :last_name
           row :email
+          row :philhealth_number
+          row :category
           row :birthday
           row :contact_number
           row :gender
@@ -65,6 +70,7 @@ ActiveAdmin.register Patient do
           row :religion
           row :address
         end
+        a "Print Vaccination Card", href: "/vaccination_card/#{resource.id}", target: '_blank', class: 'active-admin-btn'
       end
       tab "Vaccinations" do
         table_for resource.vaccinations do

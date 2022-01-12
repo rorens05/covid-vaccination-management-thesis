@@ -63,6 +63,7 @@ ActiveAdmin.setup do |config|
   # ensure that there is a user with proper rights. You can use
   # CanCanAdapter or make your own. Please refer to documentation.
   # config.authorization_adapter = ActiveAdmin::CanCanAdapter
+  config.authorization_adapter = "AdminAuthorization"
 
   # In case you prefer Pundit over other solutions you can here pass
   # the name of default policy class. This policy will be used in every
@@ -216,7 +217,7 @@ ActiveAdmin.setup do |config|
   #   config.register_stylesheet 'my_stylesheet.css'
   #
   # You can provide an options hash for more control, which is passed along to stylesheet_link_tag():
-  #   config.register_stylesheet 'my_print_stylesheet.css', media: :print
+    config.register_stylesheet 'print_stylesheet.css', media: :print
   #
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
@@ -253,19 +254,19 @@ ActiveAdmin.setup do |config|
   #
   # To disable/customize for the :admin namespace:
   #
-  #   config.namespace :admin do |admin|
-  #
-  #     # Disable the links entirely
-  #     admin.download_links = false
-  #
-  #     # Only show XML & PDF options
-  #     admin.download_links = [:xml, :pdf]
-  #
-  #     # Enable/disable the links based on block
-  #     #   (for example, with cancan)
-  #     admin.download_links = proc { can?(:view_download_links) }
-  #
-  #   end
+    config.namespace :admin do |admin|
+  
+      # Disable the links entirely
+      admin.download_links = false
+  
+      # # Only show XML & PDF options
+      # admin.download_links = [:xml, :pdf]
+  
+      # # Enable/disable the links based on block
+      # #   (for example, with cancan)
+      # admin.download_links = proc { can?(:view_download_links) }
+  
+    end
 
   # == Pagination
   #
@@ -284,7 +285,7 @@ ActiveAdmin.setup do |config|
   # hand side with a filter for each attribute of the registered model.
   # You can enable or disable them for all resources here.
   #
-  # config.filters = true
+  config.filters = true
   #
   # By default the filters include associations in a select, which means
   # that every record will be loaded for each association (up

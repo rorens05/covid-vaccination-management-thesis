@@ -1,0 +1,95 @@
+<div class="vaccination-card-container">
+  <div class="header">
+    <div class="header-title">
+      <h3 style="margin: 0;">MUNICIPALITY OF CALASIAO</h3>
+      <h4 style="margin: 0;">MUNICIPAL HEALTH OFFICE</h4>
+      <h5 style="margin: 0;">Calasiao, Pangasinan</h5>
+    </div>
+    <div class="header-logos">
+      <img src="/images/calasiao-logo-1.png"/>
+      <img src="/images/calasiao-logo-1.png"/>
+      <img src="/images/calasiao-logo-1.png"/>
+      <img src="/images/calasiao-logo-1.png"/>
+    </div>
+  </div>
+  <div class="sub-header">
+    <div class="sub-header-details">
+      <h5 style="margin-top: 12px; margin-bottom: 0">COVID-19 Vaccination card</h5>
+      <small style="display: inline-block; margin-top: 0; width: 300px">Please keep this card, which includes medical
+        information about hte vaccines you have received.</small>
+    </div>
+    <div class="id-number">
+      <h5>ID No. <%= "#{@patient.vaccinations.first&.vaccine&.name[0]}#{@patient.id.to_s.rjust(6, '0')}" %></h5>
+    </div>
+  </div>
+  <div class="content">
+    <table class="details-table">
+      <tbody>
+        <tr>
+          <td class="table-label">Surname</td>
+          <td><%= @patient.last_name %></td>
+          <td class="table-label">First Name</td>
+          <td><%= @patient.first_name %></td>
+          <td class="table-label">Last Name</td>
+          <td><%= @patient.last_name %></td>
+        </tr>
+        <tr>
+          <td class="table-label">Address</td>
+          <td colspan="3"><%= @patient.address %></td>
+          <td class="table-label">Contact Number</td>
+          <td><%= @patient.contact_number %></td>
+        </tr>
+        <tr>
+          <td class="table-label">Date of Birth</td>
+          <td><%= format_date @patient.birthday %></td>
+          <td class="table-label">PhilHealth No</td>
+          <td><%= @patient.philhealth_number %></td>
+          <td class="table-label">Category</td>
+          <td><%= @patient.category %></td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="vaccine-table">
+      <thead>
+        <tr>
+          <th>Dosage Sec</th>
+          <th>Date</th>
+          <th>Vaccine Manufacturer</th>
+          <th>Batch No.</th>
+          <th>Lot No.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @patient.vaccinations.each_with_index do |vaccination, index| %>
+          <tr>
+            <td rowspan="2"><%= "#{(index + 1).ordinalize } Dose" %></td>
+            <td><%= format_date vaccination.date_of_vacination %></td>
+            <td><%= vaccination.vaccine.name %></td>
+            <td><%= vaccination.id.to_s.rjust(6, "0") %></td>
+            <td><%= vaccination.lot_no %></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <p><small>Vaccinator Name:</small></p>
+              <p><%= vaccination.vaccinator %></p>
+            </td>
+            <td colspan="2">
+              <p><small>Signature:</small></p>
+              <p></p>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <table class="details-table">
+      <tbody>
+        <tr>
+          <th>Health Facility Name</th>
+          <td style="width: 250px"></td>
+          <th>Contact No</th>
+          <td style="width: 200px"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

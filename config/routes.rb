@@ -55,6 +55,7 @@ Rails.application.routes.draw do
   patch 'profile/update_password'
   devise_for :users
   get 'users/:id' => 'users#show'
+  get 'vaccination_card/:id' => 'home#vaccination_card'
   get 'home/index'
   root 'home#index'
 
