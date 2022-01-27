@@ -289,3 +289,45 @@
     }
   }
 }
+
+.menu_item a {
+  display: flex !important;
+  align-items: center;
+}
+
+.menu_item a::before {
+  content: " ";
+  width: 20px;
+  height: 20px;
+  background-size: 20px, 20px;
+  margin-right: 12px;
+  display: inline-block;
+}
+
+.menu_item#dashboard a::before {
+  background-image: url(/images/icon/dashboard.png);
+}
+
+.menu_item#announcements a::before {
+  background-image: url(/images/icon/announcement.png);
+}
+
+.menu_item#barangays a::before {
+  background-image: url(/images/icon/barangay.png);
+}
+
+.menu_item#patients a::before {
+  background-image: url(/images/icon/patient.png);
+}
+
+.menu_item#vaccines a::before {
+  background-image: url(/images/icon/vaccine.png);
+}
+
+.menu_item#vaccinations a::before {
+  background-image: url(/images/icon/vaccination.png);
+}
+
+.menu_item#admin_users a::before {
+  background-image: url(/images/icon/admin.png);
+}
