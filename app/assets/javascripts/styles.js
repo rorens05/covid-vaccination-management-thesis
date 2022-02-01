@@ -8,7 +8,7 @@ const initLoginPageStyles = () => {
   if(window.location.pathname === '/admin/login'){
     console.log("Login styles have been loaded")
     const loginLabel = document.querySelector("#login h2")
-    loginLabel.innerHTML = `<img src="/images/logo-header.jpg" style="height: 150px"/>`
+    // loginLabel.innerHTML = `<img src="/images/logo-header.jpg" style="height: 150px"/>`
     const loginPageBackground = document.querySelector("#active_admin_content")
     const contentWrapper = document.querySelector("#content_wrapper")
     

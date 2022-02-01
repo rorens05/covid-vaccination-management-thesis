@@ -70,7 +70,7 @@ ActiveAdmin.register Patient do
           row :religion
           row :address
         end
-        a "Print Vaccination Card", href: "/vaccination_card/#{resource.id}", target: '_blank', class: 'active-admin-btn'
+        a "Print Vaccination Card", href: "/vaccination_card/#{resource.id}", target: '_blank', class: 'active-admin-btn' if resource.vaccinations.count.positive?
       end
       tab "Vaccinations" do
         table_for resource.vaccinations do
