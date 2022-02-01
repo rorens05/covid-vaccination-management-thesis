@@ -5,9 +5,8 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column span: 4 do
         render 'dashboard'
-
       end
-      column class: 'announcement-container' do
+      column class: 'announcement-container print-hidden' do
         h3 "Announcements"
         hr
         Announcement.order(created_at: :desc).all.each do |announcement|

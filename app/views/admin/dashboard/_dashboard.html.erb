@@ -1,28 +1,30 @@
-<% total_population_per_barangay = {} %>
-<% vaccinated_user_per_barangay = {}%>
-<% number_of_vaccination_per_vaccine = {}%>
-<% Barangay.all.each do |barangay| %>
-  <% total_population_per_barangay[barangay.name] = barangay.population %>
-<% end %>
-<% Barangay.all.each do |barangay| %>
-  <% vaccinated_user_per_barangay[barangay.name] = barangay.patients.count / barangay.population.to_f * 100 %>
-<% end %>
-<% Vaccine.all.each do |vaccine| %>
-  <% number_of_vaccination_per_vaccine[vaccine.name] = vaccine.vaccinations.count %>
-<% end %>
-<h3>Dashboard</h3>
-<hr>
-<h4>Vaccinated User per barangay</h4>
-<%= column_chart vaccinated_user_per_barangay, suffix: "%" %>
-<br>
-<br>
-<h4>Total Population Per Barangay</h4>
-<%= pie_chart total_population_per_barangay %>
-<br>
-<br>
-<h4>Number of Vaccination per Day</h4>
-<%= line_chart Vaccination.group_by_day(:date_of_vacination).count if Vaccination.count.positive? %>
-<br>
-<br>
-<h4>Number of Vaccination per Vaccine</h4>
-<%= pie_chart number_of_vaccination_per_vaccine %>
+<div class="dashboard-container">
+  <% total_population_per_barangay = {} %>
+  <% vaccinated_user_per_barangay = {}%>
+  <% number_of_vaccination_per_vaccine = {}%>
+  <% Barangay.all.each do |barangay| %>
+    <% total_population_per_barangay[barangay.name] = barangay.population %>
+  <% end %>
+  <% Barangay.all.each do |barangay| %>
+    <% vaccinated_user_per_barangay[barangay.name] = barangay.patients.count / barangay.population.to_f * 100 %>
+  <% end %>
+  <% Vaccine.all.each do |vaccine| %>
+    <% number_of_vaccination_per_vaccine[vaccine.name] = vaccine.vaccinations.count %>
+  <% end %>
+  <h3 class="print-hidden" style="display: flex; justify-content: space-between">Dashboard <a href="#" class="print-btn print-hidden" onclick="window.print()">PRINT</a></h3>
+  <hr class="print-hidden">
+  <h4>Vaccinated User per barangay</h4>
+  <%= column_chart vaccinated_user_per_barangay, suffix: "%" %>
+  <br>
+  <br>
+  <h4>Total Population Per Barangay</h4>
+  <%= pie_chart total_population_per_barangay %>
+  <br>
+  <br>
+  <h4>Number of Vaccination per Day</h4>
+  <%= line_chart Vaccination.group_by_day(:date_of_vacination).count if Vaccination.count.positive? %>
+  <br>
+  <br>
+  <h4>Number of Vaccination per Vaccine</h4>
+  <%= pie_chart number_of_vaccination_per_vaccine %>
+</div>

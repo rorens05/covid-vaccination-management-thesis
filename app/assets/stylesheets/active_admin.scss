@@ -246,7 +246,7 @@
     }
     .header-logos {
       img {
-        width: 50px;
+        width: 40px;
       }
     }
   }
@@ -330,4 +330,11 @@
 
 .menu_item#admin_users a::before {
   background-image: url(/images/icon/admin.png);
+}
+
+.print-btn {
+  background-color: $primary_color;
+  color: white !important;
+  padding: 4px 12px;
+  border-radius: 4px;
 }
