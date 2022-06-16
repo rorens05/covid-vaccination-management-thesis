@@ -32,7 +32,7 @@ const initDashboardStyles = () => {
     headerH2.innerHTML = `
       <div style="display: flex;">
         <img src="/images/logo.png" style="height: 50px; padding-top: 4px; padding-left: 8px; margin: 0 !important"/>
-        <p style="margin: 0; line-height: 18px; padding-top: 12px">Covid19 Vaccination Management System</p>
+        <p style="margin: 0; line-height: 18px; padding-top: 12px"></p>
       </div>
     `
   }
